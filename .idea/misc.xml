@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/hrms_mobile/app/src/main/res/layouts/asset/layout/fragment_add_asset.xml" value="0.1" />
+        <entry key="..\:/hrms_mobile/app/src/main/res/layouts/asset/layout/fragment_search_asset.xml" value="0.1" />
+        <entry key="..\:/hrms_mobile/app/src/main/res/layouts/asset/layout/layout.xml" value="0.1" />
         <entry key="..\:/sohail/HRMS_Android_3/app/src/main/res/layout/activity_login.xml" value="0.2957427536231884" />
         <entry key="..\:/sohail/HRMS_Android_3/app/src/main/res/layout/activity_nav.xml" value="0.20520833333333333" />
         <entry key="..\:/sohail/HRMS_Android_3/app/src/main/res/layout/app_bar_nav.xml" value="0.20520833333333333" />

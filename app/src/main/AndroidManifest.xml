@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ScanCodeActivity"
+            android:name=".ui.asset.ScanCodeActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

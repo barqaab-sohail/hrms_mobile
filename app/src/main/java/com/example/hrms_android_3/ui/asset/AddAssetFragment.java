@@ -1,4 +1,4 @@
-package com.example.hrms_android_3.ui.addasset;
+package com.example.hrms_android_3.ui.asset;
 
 import android.content.Intent;
 import android.graphics.Bitmap;

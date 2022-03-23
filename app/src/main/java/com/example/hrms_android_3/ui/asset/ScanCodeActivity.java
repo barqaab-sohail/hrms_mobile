@@ -1,11 +1,11 @@
-package com.example.hrms_android_3;
+package com.example.hrms_android_3.ui.asset;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.os.Bundle;
 
-import com.example.hrms_android_3.ui.addasset.SearchAssetFragment;
+import com.example.hrms_android_3.ui.asset.SearchAssetFragment;
 import com.google.zxing.Result;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;

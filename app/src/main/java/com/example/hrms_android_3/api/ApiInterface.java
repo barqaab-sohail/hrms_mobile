@@ -52,6 +52,4 @@ public interface ApiInterface {
     Call<String>getasset(@Header("Authorization") String token, @Path("id") String assetCode);
 
 
-
-
 }

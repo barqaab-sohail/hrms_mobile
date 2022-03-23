@@ -1,4 +1,4 @@
-package com.example.hrms_android_3.ui.addasset;
+package com.example.hrms_android_3.ui.asset;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.example.hrms_android_3.R;
-import com.example.hrms_android_3.ScanCodeActivity;
-import com.example.hrms_android_3.databinding.FragmentAddAssetBinding;
 import com.example.hrms_android_3.databinding.FragmentSearchAssetBinding;
 
 
