@@ -22,9 +22,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.hrms_android_3.databinding.ActivityNavBinding;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class NavActivity extends BaseActivity {
 
@@ -58,13 +55,12 @@ public class NavActivity extends BaseActivity {
 
         userEmail.setText(preferenceHelper.getEmail());
         userName.setText(preferenceHelper.getName().toUpperCase());
-        Picasso.get().load(preferenceHelper.getPictureUrl()).resize(150, 150).into(userPicture);
-
+       // Picasso.get().load(preferenceHelper.getPictureUrl()).resize(150, 150).into(userPicture);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new Builder(
-                R.id.nav_dashboard, R.id.nav_add_asset, R.id.nav_slideshow)
+                R.id.nav_dashboard, R.id.nav_add_asset, R.id.nav_search_asset, R.id.nav_slideshow)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_nav);

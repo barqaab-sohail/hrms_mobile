@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_add_asset"
         android:name="com.example.hrms_android_3.ui.addasset.AddAssetFragment"
         android:label="@string/menu_add_asset"
         tools:layout="@layout/fragment_add_asset" />
@@ -22,4 +22,9 @@
         android:name="com.example.hrms_android_3.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_search_asset"
+        android:name="com.example.hrms_android_3.ui.addasset.SearchAssetFragment"
+        android:label="Search Asset"
+        tools:layout="@layout/fragment_search_asset" />
 </navigation>
