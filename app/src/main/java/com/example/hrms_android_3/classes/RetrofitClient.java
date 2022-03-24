@@ -11,7 +11,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RetrofitClient {
 
-    private static final String BASE_URL = "http://192.168.10.5/hrms/public/api/";
+    private static final String BASE_URL = "http://192.168.1.10/hrms/public/api/";
     private static RetrofitClient retrofitClient;
     private Retrofit retrofit;
 

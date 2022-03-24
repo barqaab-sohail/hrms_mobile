@@ -3,6 +3,7 @@ package com.example.hrms_android_3.api;
 import com.example.hrms_android_3.model.LoginModel;
 import com.example.hrms_android_3.model.asset.AssetClassModel;
 import com.example.hrms_android_3.model.asset.AssetSubClassModel;
+import com.example.hrms_android_3.model.asset.ClientClassModel;
 
 import java.util.List;
 
@@ -50,6 +51,9 @@ public interface ApiInterface {
 
     @GET("asset/asset/{id}")
     Call<String>getasset(@Header("Authorization") String token, @Path("id") String assetCode);
+
+    @GET("clients")
+    Call<List<ClientClassModel>> getClients(@Header("Authorization") String token);
 
 
 }

@@ -30,6 +30,7 @@ import com.example.hrms_android_3.classes.RetrofitClient;
 import com.example.hrms_android_3.databinding.FragmentAddAssetBinding;
 import com.example.hrms_android_3.model.asset.AssetClassModel;
 import com.example.hrms_android_3.model.asset.AssetSubClassModel;
+import com.example.hrms_android_3.model.asset.ClientClassModel;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.io.ByteArrayOutputStream;
@@ -51,10 +52,11 @@ public class AddAssetFragment extends Fragment {
     private PreferenceHelper preferenceHelper;
     private int IMG_REQUEST = 21;
     private Bitmap bitmap;
-    Spinner assetClassSpinner, assetSubClassSpinner;
+    Spinner assetClassSpinner, assetSubClassSpinner, assetOwnershipSpinner;
     ArrayList<String> assetClassList = new ArrayList<>();
     ArrayList<String> assetSubClassList = new ArrayList<>();
-    String assetClassName, assetSubClassName, token;
+    ArrayList<String> clientList = new ArrayList<>();
+    String assetClassName, assetSubClassName, clientClassName, token;
     boolean isAllFieldsChecked = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -64,6 +66,7 @@ public class AddAssetFragment extends Fragment {
             View root = binding.getRoot();
             assetClassSpinner=binding.asclass;
             assetSubClassSpinner = binding.assubclass;
+            assetOwnershipSpinner = binding.ownership;
 
             etdescription = binding.description;
             imageView = binding.imageView;
@@ -71,83 +74,9 @@ public class AddAssetFragment extends Fragment {
             submit = binding.submitAsset;
             preferenceHelper = new PreferenceHelper(getContext());
             //token = "Bearer "+preferenceHelper.getToken();
-            token = "Bearer 295|zT68d6qoE0DomczpNqzR3rvaARw9F2f6fJwndHJK";
-            Call<List<AssetClassModel>> call = RetrofitClient.getInstance().getApi().getAssetClasses(token);
-            call.enqueue(new Callback<List<AssetClassModel>>() {
-                @Override
-                public void onResponse(Call<List<AssetClassModel>> call, Response<List<AssetClassModel>> response) {
-                    if (response.isSuccessful()) {
-
-                        List<AssetClassModel>  assetClass = response.body();
-                        assetClassList.add("Please Select Asset class");
-                        for (int i=0; i<assetClass.size();i++){
-                            assetClassList.add(assetClass.get(i).getName());
-                        }
-                        final ArrayAdapter assetClassAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,assetClassList);
-                        assetClassAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        assetClassSpinner.setAdapter(assetClassAdapter);
-                        assetClassSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                assetClassName =  assetClassSpinner.getSelectedItem().toString();
-                                if(adapterView.getId() == R.id.asclass && assetClassName != "Please Select Asset class"){
-                                    assetSubClassList.clear();
-                                    String className = adapterView.getSelectedItem().toString();
-                                    Call<List<AssetSubClassModel>> call = RetrofitClient.getInstance().getApi().getAssetSubClasses(token, className);
-                                    call.enqueue(new Callback<List<AssetSubClassModel>>() {
-                                        @Override
-                                        public void onResponse(Call<List<AssetSubClassModel>> call, Response<List<AssetSubClassModel>> response) {
-                                            List<AssetSubClassModel>  assetSubClass = response.body();
-                                            if(response.isSuccessful()) {
-                                                assetSubClassList.add("Please Select Sub Class");
-                                                for (int i = 0; i < assetSubClass.size(); i++) {
-                                                    assetSubClassList.add(assetSubClass.get(i).getName());
-                                                }
-                                                final ArrayAdapter assetSubClassAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, assetSubClassList);
-                                                assetSubClassAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                                                assetSubClassSpinner.setAdapter(assetSubClassAdapter);
-                                                assetSubClassSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-                                                    @Override
-                                                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                                        assetSubClassName =  assetSubClassSpinner.getSelectedItem().toString();
-                                                    }
-
-                                                    @Override
-                                                    public void onNothingSelected(AdapterView<?> adapterView) {
-
-                                                    }
-                                                });
-
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onFailure(Call<List<AssetSubClassModel>> call, Throwable t) {
-
-                                        }
-                                    });
-                                }
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> adapterView) {
-
-                            }
-                        });
-
-
-
-                    }
-
-                }
-
-                @Override
-                public void onFailure(Call<List<AssetClassModel>> call, Throwable t) {
-                    String data = t.toString();
-                    Toast.makeText(getContext(),data,Toast.LENGTH_LONG).show();
-
-                }
-            });
+            token = "Bearer 296|BVy1lAb31wil3tnhy01oibZOHWF3jnP3YwysPJN0";
+            classAndSubClassSpinnger();
+            ownershipSpinner();
 
         selectImage.setOnClickListener(new OnClickListener() {
             @Override
@@ -173,7 +102,128 @@ public class AddAssetFragment extends Fragment {
         });
 
 
+
         return root;
+    }
+
+    private void ownershipSpinner() {
+        Call<List<ClientClassModel>> callClients = RetrofitClient.getInstance().getApi().getClients(token);
+        callClients.enqueue(new Callback<List<ClientClassModel>>() {
+            @Override
+            public void onResponse(Call<List<ClientClassModel>> call, Response<List<ClientClassModel>> response) {
+                if (response.isSuccessful()) {
+                    List<ClientClassModel>  clients = response.body();
+                    clientList.add("Please Select Ownership");
+                    for (int i=0; i<clients.size();i++){
+                        clientList.add(clients.get(i).getName());
+                    }
+
+                    final ArrayAdapter clientClassAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,clientList);
+                    clientClassAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                    assetOwnershipSpinner.setAdapter(clientClassAdapter);
+                    assetOwnershipSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            clientClassName =  assetOwnershipSpinner.getSelectedItem().toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<ClientClassModel>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void classAndSubClassSpinnger(){
+        Call<List<AssetClassModel>> call = RetrofitClient.getInstance().getApi().getAssetClasses(token);
+        call.enqueue(new Callback<List<AssetClassModel>>() {
+            @Override
+            public void onResponse(Call<List<AssetClassModel>> call, Response<List<AssetClassModel>> response) {
+                if (response.isSuccessful()) {
+
+                    List<AssetClassModel>  assetClass = response.body();
+                    assetClassList.add("Please Select Asset class");
+                    for (int i=0; i<assetClass.size();i++){
+                        assetClassList.add(assetClass.get(i).getName());
+                    }
+                    final ArrayAdapter assetClassAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,assetClassList);
+                    assetClassAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    assetClassSpinner.setAdapter(assetClassAdapter);
+                    assetClassSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            assetClassName =  assetClassSpinner.getSelectedItem().toString();
+                            if(adapterView.getId() == R.id.asclass && assetClassName != "Please Select Asset class"){
+                                assetSubClassList.clear();
+                                String className = adapterView.getSelectedItem().toString();
+                                Call<List<AssetSubClassModel>> call = RetrofitClient.getInstance().getApi().getAssetSubClasses(token, className);
+                                call.enqueue(new Callback<List<AssetSubClassModel>>() {
+                                    @Override
+                                    public void onResponse(Call<List<AssetSubClassModel>> call, Response<List<AssetSubClassModel>> response) {
+                                        List<AssetSubClassModel>  assetSubClass = response.body();
+                                        if(response.isSuccessful()) {
+                                            assetSubClassList.add("Please Select Sub Class");
+                                            for (int i = 0; i < assetSubClass.size(); i++) {
+                                                assetSubClassList.add(assetSubClass.get(i).getName());
+                                            }
+                                            final ArrayAdapter assetSubClassAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, assetSubClassList);
+                                            assetSubClassAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                            assetSubClassSpinner.setAdapter(assetSubClassAdapter);
+                                            assetSubClassSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+                                                @Override
+                                                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                                    assetSubClassName =  assetSubClassSpinner.getSelectedItem().toString();
+                                                }
+
+                                                @Override
+                                                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                                                }
+                                            });
+
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<List<AssetSubClassModel>> call, Throwable t) {
+
+                                    }
+                                });
+                            }
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<AssetClassModel>> call, Throwable t) {
+                String data = t.toString();
+                Toast.makeText(getContext(),data,Toast.LENGTH_LONG).show();
+
+            }
+
+
+
+        });
     }
 
     @Override
@@ -204,6 +254,7 @@ public class AddAssetFragment extends Fragment {
                 Toast.makeText(getContext(), data, Toast.LENGTH_SHORT).show();
                 assetClassSpinner.setSelection(0);
                 assetSubClassSpinner.setSelection(0);
+                assetOwnershipSpinner.setSelection(0);
                 etdescription.setText("");
                 imageView.setImageURI(null);
                 etdescription.setError(null);
@@ -232,6 +283,7 @@ public class AddAssetFragment extends Fragment {
 
         TextView errorTextAssetClass = (TextView)assetClassSpinner.getSelectedView();
         TextView errorTextAssetSubClass = (TextView)assetSubClassSpinner.getSelectedView();
+        TextView errorTextOwnership = (TextView)assetOwnershipSpinner.getSelectedView();
 
         if (errorTextAssetClass.getText() == "Please Select Asset class" || errorTextAssetClass.getText() == null){
             etdescription.setError("Asset Class is required");
@@ -242,6 +294,11 @@ public class AddAssetFragment extends Fragment {
             return false;
         }
         if (errorTextAssetSubClass.getText() == "Please Select Sub Class" || errorTextAssetSubClass.getText() == null){
+            etdescription.setError("Asset Sub Class is required");
+            return false;
+        }
+
+        if (errorTextOwnership.getText() == "Please Select Ownership" || errorTextOwnership.getText() == null){
             etdescription.setError("Asset Sub Class is required");
             return false;
         }
