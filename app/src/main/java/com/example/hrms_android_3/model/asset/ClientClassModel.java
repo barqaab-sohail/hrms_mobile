@@ -26,9 +26,6 @@ public class ClientClassModel {
 
     @Override
     public String toString() {
-        return "ClientClassModel{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        return name;
     }
 }

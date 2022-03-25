@@ -45,8 +45,9 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("asset/store")
     Call<String>createAsset(@Header("Authorization") String token,
-                            @Field("as_sub_class_name") String as_sub_class_name,
+                            @Field("as_sub_class_id") String as_sub_class_id,
                             @Field("description") String description,
+                            @Field("client_id") String client_id,
                             @Field("En_Image") String encodedImage);
 
     @GET("asset/asset/{id}")

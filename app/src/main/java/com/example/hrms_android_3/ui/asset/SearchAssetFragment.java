@@ -23,7 +23,6 @@ import com.example.hrms_android_3.ui.dashboard.DashboardFragment;
 public class SearchAssetFragment extends Fragment {
     private FragmentSearchAssetBinding binding;
 
-
     public static EditText resultTextView;
     public static Button submit_btn;
     Button scan_btn;

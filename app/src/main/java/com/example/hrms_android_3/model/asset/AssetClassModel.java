@@ -8,6 +8,11 @@ public class AssetClassModel {
         this.name = name;
     }
 
+    public AssetClassModel(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public String getId() {
         return id;
     }
@@ -26,9 +31,6 @@ public class AssetClassModel {
 
     @Override
     public String toString() {
-        return "AssetClassModel{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        return name;
     }
 }

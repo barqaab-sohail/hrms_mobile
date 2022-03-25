@@ -26,9 +26,6 @@ public class AssetSubClassModel {
 
     @Override
     public String toString() {
-        return "AssetSubClassModel{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        return name;
     }
 }
