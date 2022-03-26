@@ -27,9 +27,4 @@
         android:name="com.example.hrms_android_3.ui.asset.SearchAssetFragment"
         android:label="Search Asset"
         tools:layout="@layout/fragment_search_asset" />
-    <activity
-        android:id="@+id/mainActivity2"
-        android:name="com.example.hrms_android_3.MainActivity2"
-        android:label="activity_main2"
-        tools:layout="@layout/activity_main2" />
 </navigation>

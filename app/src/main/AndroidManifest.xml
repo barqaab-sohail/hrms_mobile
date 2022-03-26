@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,12 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HRMS_Android_3"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".NavActivity" />
+
         <activity
             android:name=".NavActivity"
             android:exported="true"
@@ -34,6 +28,7 @@
         <activity
             android:name=".ui.asset.ScanCodeActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="false" />

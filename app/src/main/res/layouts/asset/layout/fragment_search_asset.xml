@@ -13,6 +13,31 @@
         android:orientation="vertical"
         android:gravity="center"
         tools:context=".MainActivity">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:id="@+id/assetImg"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/assetDescription"
+
+           />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/assetAllocation"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/assetCode"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/assetOwnership"/>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,6 +67,11 @@
             />
 
 
+
+
     </LinearLayout>
+
+
+
 
 </FrameLayout>

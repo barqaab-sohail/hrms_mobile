@@ -2,8 +2,10 @@ package com.example.hrms_android_3.api;
 
 import com.example.hrms_android_3.model.LoginModel;
 import com.example.hrms_android_3.model.asset.AssetClassModel;
+import com.example.hrms_android_3.model.asset.AssetModel;
 import com.example.hrms_android_3.model.asset.AssetSubClassModel;
 import com.example.hrms_android_3.model.asset.ClientClassModel;
+import com.example.hrms_android_3.model.charts.AgeChart;
 
 import java.util.List;
 
@@ -51,10 +53,15 @@ public interface ApiInterface {
                             @Field("En_Image") String encodedImage);
 
     @GET("asset/asset/{id}")
-    Call<String>getasset(@Header("Authorization") String token, @Path("id") String assetCode);
+    Call<AssetModel>getAsset(@Header("Authorization") String token, @Path("id") String assetCode);
 
     @GET("clients")
     Call<List<ClientClassModel>> getClients(@Header("Authorization") String token);
+
+
+    //Charts
+    @GET("ageChart")
+    Call<List<AgeChart>> getAgeChart(@Header("Authorization") String token);
 
 
 }

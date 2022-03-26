@@ -39,8 +39,8 @@ public class NavActivity extends BaseActivity {
         binding.appBarNav.fab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
         DrawerLayout drawer = binding.drawerLayout;

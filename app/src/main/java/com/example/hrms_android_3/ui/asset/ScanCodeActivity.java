@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.widget.Toast;
 
+import com.example.hrms_android_3.classes.RetrofitClient;
+import com.example.hrms_android_3.model.asset.AssetModel;
 import com.google.zxing.Result;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -12,8 +15,12 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
+import com.squareup.picasso.Picasso;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
@@ -47,7 +54,8 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
 
     @Override
     public void handleResult(Result result) {
-        SearchAssetFragment.resultTextView.setText(result.getText());
+        String assetCode = result.getText();
+        SearchAssetFragment.assetResult(assetCode);
         onBackPressed();
     }
 
