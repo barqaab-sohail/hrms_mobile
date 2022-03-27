@@ -19,10 +19,7 @@
             android:exported="true"
             android:label="@string/title_activity_nav"
             android:theme="@style/Theme.HRMS_Android_3.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
 
         </activity>
         <activity
@@ -35,7 +32,10 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

@@ -76,7 +76,8 @@ public class AddAssetFragment extends Fragment {
             selectImage = binding.selectimage;
             submit = binding.submitAsset;
             preferenceHelper = new PreferenceHelper(getContext());
-            token = "Bearer "+preferenceHelper.getToken();
+            token = preferenceHelper.getToken();
+
             //token = "Bearer 303|0iRuCjdAoOjKKZ1WZOSDA7UmrVXOIW4i9gF7Am54";
 
             classAndSubClassSpinnger();
@@ -111,7 +112,7 @@ public class AddAssetFragment extends Fragment {
     }
 
     private void ownershipSpinner() {
-        Call<List<ClientClassModel>> callClients = RetrofitClient.getInstance().getApi().getClients(token);
+        Call<List<ClientClassModel>> callClients = RetrofitClient.getInstance().getApi().getClients("Bearer "+token);
         callClients.enqueue(new Callback<List<ClientClassModel>>() {
             @Override
             public void onResponse(Call<List<ClientClassModel>> call, Response<List<ClientClassModel>> response) {
@@ -152,7 +153,7 @@ public class AddAssetFragment extends Fragment {
     }
 
     private void classAndSubClassSpinnger(){
-        Call<List<AssetClassModel>> call = RetrofitClient.getInstance().getApi().getAssetClasses(token);
+        Call<List<AssetClassModel>> call = RetrofitClient.getInstance().getApi().getAssetClasses("Bearer "+token);
         call.enqueue(new Callback<List<AssetClassModel>>() {
             @Override
             public void onResponse(Call<List<AssetClassModel>> call, Response<List<AssetClassModel>> response) {
@@ -200,7 +201,7 @@ public class AddAssetFragment extends Fragment {
     }
 
     private void subClassSpinner() {
-        Call<List<AssetSubClassModel>> call = RetrofitClient.getInstance().getApi().getAssetSubClasses(token, assetClassId);
+        Call<List<AssetSubClassModel>> call = RetrofitClient.getInstance().getApi().getAssetSubClasses("Bearer "+token, assetClassId);
         call.enqueue(new Callback<List<AssetSubClassModel>>() {
             @Override
             public void onResponse(Call<List<AssetSubClassModel>> call, Response<List<AssetSubClassModel>> response) {
@@ -263,7 +264,7 @@ public class AddAssetFragment extends Fragment {
         String encodeImage = Base64.encodeToString(imageInByte, Base64.DEFAULT);
         final String description = etdescription.getText().toString().trim();
 
-        Call<String> call = RetrofitClient.getInstance().getApi().createAsset(token,assetSubClassId,description,clientId,encodeImage);
+        Call<String> call = RetrofitClient.getInstance().getApi().createAsset("Bearer "+token,assetSubClassId,description,clientId,encodeImage);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

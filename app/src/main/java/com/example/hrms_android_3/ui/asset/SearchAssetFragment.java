@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hrms_android_3.classes.PreferenceHelper;
 import com.example.hrms_android_3.classes.RetrofitClient;
 import com.example.hrms_android_3.databinding.FragmentSearchAssetBinding;
 import com.example.hrms_android_3.model.asset.AssetModel;
@@ -28,6 +29,7 @@ import retrofit2.Response;
 
 public class SearchAssetFragment extends Fragment {
     private FragmentSearchAssetBinding binding;
+    private static PreferenceHelper preferenceHelper;
 
     public static EditText resultTextView;
     public static TextView asset_description, asset_code, asset_ownership, asset_allocation;
@@ -49,7 +51,7 @@ public class SearchAssetFragment extends Fragment {
         asset_code = binding.assetCode;
         asset_ownership = binding.assetOwnership;
         asset_image = binding.assetImg;
-
+        preferenceHelper = new PreferenceHelper(getContext());
         submit_btn = binding.btnSubmit;
 
         scan_btn = binding.btnScan;
@@ -75,8 +77,9 @@ public class SearchAssetFragment extends Fragment {
     }
 
     public static void assetResult(String assetCode){
-        String userToken = "123456789";
-        Call<AssetModel> call = RetrofitClient.getInstance().getApi().getAsset(userToken, assetCode);
+
+        String token = preferenceHelper.getToken();
+        Call<AssetModel> call = RetrofitClient.getInstance().getApi().getAsset("Bearer " +token, assetCode);
         call.enqueue(new Callback<AssetModel>() {
             @Override
             public void onResponse(Call<AssetModel> call, Response<AssetModel> response) {

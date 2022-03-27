@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<LoginModel>() {
             @Override
             public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
-                if (response.isSuccessful() && response.code()==200) {
+                if (response.isSuccessful()) {
                     LoginModel loginModel = response.body();
                     if (response.body() != null && loginModel.isStatus()) {
                         Log.i("onSuccess", loginModel.getName());
@@ -71,7 +71,8 @@ public class LoginActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.INVISIBLE);
                     }
                 }else{
-                    Toast.makeText(getApplicationContext(), "Email or Password is Incorrected",Toast.LENGTH_LONG).show();
+                    Log.i("Failure",response.toString());
+                    Toast.makeText(getApplicationContext(), "error",Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }

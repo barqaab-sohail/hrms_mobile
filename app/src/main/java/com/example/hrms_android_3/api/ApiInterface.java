@@ -29,10 +29,10 @@ public interface ApiInterface {
 
 
     @Headers("Accept: application/json")
-    @GET("employee")
+    @GET("user/employee")
     Call<String> getUser();
 
-    @POST("logout")
+    @POST("user/logout")
     Call<String> userLogout(@Header("Authorization") String token);
 
 

@@ -12,12 +12,14 @@ public class PreferenceHelper {
     private final String PICTURE_URL = "picture_url";
     private SharedPreferences app_prefs;
     private Context context;
+    private static PreferenceHelper preferenceHelper;
 
     public PreferenceHelper(Context context) {
         app_prefs = context.getSharedPreferences("shared",
                 Context.MODE_PRIVATE);
         this.context = context;
     }
+
 
     public String getName() {
         return app_prefs.getString(NAME, "");

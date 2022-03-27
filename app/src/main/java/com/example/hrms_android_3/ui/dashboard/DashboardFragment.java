@@ -51,9 +51,10 @@ public class DashboardFragment extends Fragment {
     }
 
     private void getAgeChart() {
-
-        String userToken = "Bearer 305|o5gy2Y0r5x5shoFq7EQAfveA5c2KNrB8tDNRYwj6";
-        Call<List<AgeChart>> call = RetrofitClient.getInstance().getApi().getAgeChart(userToken);
+        preferenceHelper = new PreferenceHelper(getContext());
+        String userToken = preferenceHelper.getToken();
+                //"Bearer 305|o5gy2Y0r5x5shoFq7EQAfveA5c2KNrB8tDNRYwj6";
+        Call<List<AgeChart>> call = RetrofitClient.getInstance().getApi().getAgeChart("Bearer "+userToken);
         call.enqueue(new Callback<List<AgeChart>>() {
             @Override
             public void onResponse(Call<List<AgeChart>> call, Response<List<AgeChart>> response) {
