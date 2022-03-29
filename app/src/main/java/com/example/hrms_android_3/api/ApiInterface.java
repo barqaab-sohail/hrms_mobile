@@ -32,8 +32,9 @@ public interface ApiInterface {
     @GET("user/employee")
     Call<String> getUser();
 
+    @FormUrlEncoded
     @POST("user/logout")
-    Call<String> userLogout(@Header("Authorization") String token);
+    Call<Object> userLogout(@Header("Authorization") String token, @Field("email") String email);
 
 
     //Asset API

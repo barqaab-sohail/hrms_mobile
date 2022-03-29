@@ -45,7 +45,7 @@ public class DashboardFragment extends Fragment {
         final TextView textView = binding.textDashboard;
         preferenceHelper = new PreferenceHelper(getContext());
         String userName = preferenceHelper.getName();
-        textView.setText(userName + " Welcome to HRMS");
+
         getAgeChart();
         return root;
     }
