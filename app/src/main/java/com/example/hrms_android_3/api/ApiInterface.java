@@ -6,7 +6,9 @@ import com.example.hrms_android_3.model.asset.AssetModel;
 import com.example.hrms_android_3.model.asset.AssetSubClassModel;
 import com.example.hrms_android_3.model.asset.ClientClassModel;
 import com.example.hrms_android_3.model.charts.AgeChart;
+import com.example.hrms_android_3.model.hr.Employee;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -63,6 +65,10 @@ public interface ApiInterface {
     //Charts
     @GET("ageChart")
     Call<List<AgeChart>> getAgeChart(@Header("Authorization") String token);
+
+    //HR
+    @GET("hr/employees")
+    Call<ArrayList<Employee>> getEmployees();
 
 
 }

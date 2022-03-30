@@ -55,7 +55,7 @@ public class NavActivity extends BaseActivity {
 
         userEmail.setText(preferenceHelper.getEmail());
         userName.setText(preferenceHelper.getName().toUpperCase());
-       Picasso.get().load(preferenceHelper.getPictureUrl()).resize(150, 150).into(userPicture);
+      // Picasso.get().load(preferenceHelper.getPictureUrl()).resize(150, 150).into(userPicture);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

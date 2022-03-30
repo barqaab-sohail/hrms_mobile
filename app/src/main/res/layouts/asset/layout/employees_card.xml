@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:elevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/emp_picture"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@mipmap/ic_launcher" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/emp_name"
+            android:text="This is Header Text"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/emp_picture"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/emp_no"
+            android:text="This is Header Text"
+            android:textSize="15dp"
+            android:layout_toRightOf="@+id/emp_picture"
+            android:layout_below="@+id/emp_name"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/emp_designation"
+            android:text="This is Description Text"
+            android:textSize="15dp"
+            android:layout_toRightOf="@+id/emp_picture"
+            android:layout_below="@+id/emp_no"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/emp_joining"
+            android:text="This is Description Text"
+            android:textSize="15dp"
+            android:layout_toRightOf="@+id/emp_picture"
+            android:layout_below="@+id/emp_designation"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/emp_cnic"
+            android:text="This is Description Text"
+            android:textSize="15dp"
+            android:layout_toRightOf="@+id/emp_picture"
+            android:layout_below="@+id/emp_joining"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/emp_birth_date"
+            android:text="This is Description Text"
+            android:textSize="15dp"
+            android:layout_toRightOf="@+id/emp_picture"
+            android:layout_below="@+id/emp_cnic"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/emp_mobile"
+            android:text="This is Description Text"
+            android:textSize="15dp"
+            android:layout_toRightOf="@+id/emp_picture"
+            android:layout_below="@+id/emp_birth_date"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/emp_status"
+            android:text="This is Description Text"
+            android:textSize="15dp"
+            android:layout_toRightOf="@+id/emp_picture"
+            android:layout_below="@+id/emp_mobile"
+            android:layout_marginLeft="10dp"
+            />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
