@@ -1,5 +1,6 @@
 package com.example.hrms_android_3.api;
 
+import com.example.hrms_android_3.asset.models.AssetEmployeeModel;
 import com.example.hrms_android_3.login.LoginModel;
 import com.example.hrms_android_3.asset.models.AssetClassModel;
 import com.example.hrms_android_3.asset.models.AssetModel;
@@ -42,6 +43,9 @@ public interface ApiInterface {
     //Asset API
     @GET("asset/classes")
     Call<List<AssetClassModel>> getAssetClasses(@Header("Authorization") String token);
+
+    @GET("asset/employees")
+    Call<List<AssetEmployeeModel>> getAsseEmployees(@Header("Authorization") String token);
 
     @GET("asset/subClasses/{id}")
     Call<List<AssetSubClassModel>> getAssetSubClasses(@Header("Authorization") String token,

@@ -26,12 +26,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.hrms_android_3.R;
+import com.example.hrms_android_3.asset.models.AssetEmployeeModel;
 import com.example.hrms_android_3.classes.PreferenceHelper;
 import com.example.hrms_android_3.classes.RetrofitClient;
 import com.example.hrms_android_3.databinding.FragmentAddAssetBinding;
 import com.example.hrms_android_3.asset.models.AssetClassModel;
 import com.example.hrms_android_3.asset.models.AssetSubClassModel;
 import com.example.hrms_android_3.asset.models.ClientClassModel;
+import com.example.hrms_android_3.hr.models.Employee;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.io.ByteArrayOutputStream;
@@ -54,11 +56,11 @@ public class AddAssetFragment extends Fragment {
     private int IMG_REQUEST = 21;
     private Bitmap bitmap;
     private ProgressBar progressBar;
-    Spinner assetClassSpinner, assetSubClassSpinner, assetOwnershipSpinner;
+    Spinner assetClassSpinner, assetSubClassSpinner, assetOwnershipSpinner, employeeSpinner;
     ArrayList<String> assetClassList = new ArrayList<>();
     ArrayList<String> assetSubClassList = new ArrayList<>();
     ArrayList<String> clientList = new ArrayList<>();
-    String assetClassId, assetSubClassId, clientId, token;
+    String assetClassId, assetSubClassId, clientId, employeeId, token;
     boolean isAllFieldsChecked = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -69,6 +71,7 @@ public class AddAssetFragment extends Fragment {
             assetClassSpinner=binding.asclass;
             assetSubClassSpinner = binding.assubclass;
             assetOwnershipSpinner = binding.ownership;
+            employeeSpinner = binding.location;
             progressBar = binding.progress;
             progressBar.setVisibility(View.VISIBLE);
             etdescription = binding.description;
@@ -82,6 +85,7 @@ public class AddAssetFragment extends Fragment {
 
             classAndSubClassSpinnger();
             ownershipSpinner();
+            locationSpinner();
 
         selectImage.setOnClickListener(new OnClickListener() {
             @Override
@@ -109,6 +113,46 @@ public class AddAssetFragment extends Fragment {
 
 
         return root;
+    }
+
+    private void locationSpinner() {
+       Call<List<AssetEmployeeModel>> call = RetrofitClient.getInstance().getApi().getAsseEmployees("Bearer "+token);
+       call.enqueue(new Callback<List<AssetEmployeeModel>>() {
+           @Override
+           public void onResponse(Call<List<AssetEmployeeModel>> call, Response<List<AssetEmployeeModel>> response) {
+               if (response.isSuccessful()) {
+                   progressBar.setVisibility(View.INVISIBLE);
+                   List<AssetEmployeeModel>  employees = response.body();
+                   AssetEmployeeModel item = new AssetEmployeeModel("0", "Please Select Employee","");
+                   employees.add(0,item);
+
+                   final ArrayAdapter employeeAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,employees);
+                   employeeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                   employeeSpinner.setAdapter(employeeAdapter);
+                   employeeSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+                       @Override
+                       public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                           AssetEmployeeModel assetEmployeeModel = (AssetEmployeeModel) employeeSpinner.getSelectedItem();
+
+                           if(adapterView.getId() == R.id.location && assetEmployeeModel.getFull_name() != "Please Select Employee"){
+                               employeeId = assetEmployeeModel.getId();
+                           }
+                       }
+
+                       @Override
+                       public void onNothingSelected(AdapterView<?> adapterView) {
+
+                       }
+                   });
+               }
+           }
+
+           @Override
+           public void onFailure(Call<List<AssetEmployeeModel>> call, Throwable t) {
+
+           }
+       });
     }
 
     private void ownershipSpinner() {
