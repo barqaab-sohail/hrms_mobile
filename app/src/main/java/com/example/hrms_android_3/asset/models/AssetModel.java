@@ -1,4 +1,4 @@
-package com.example.hrms_android_3.model.asset;
+package com.example.hrms_android_3.asset.models;
 
 public class AssetModel {
     private String description, asset_code, asset_image, allocation, location, ownsership;

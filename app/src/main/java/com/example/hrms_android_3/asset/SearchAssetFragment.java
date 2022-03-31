@@ -1,4 +1,4 @@
-package com.example.hrms_android_3.ui.asset;
+package com.example.hrms_android_3.asset;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.example.hrms_android_3.classes.PreferenceHelper;
 import com.example.hrms_android_3.classes.RetrofitClient;
 import com.example.hrms_android_3.databinding.FragmentSearchAssetBinding;
-import com.example.hrms_android_3.model.asset.AssetModel;
+import com.example.hrms_android_3.asset.models.AssetModel;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;

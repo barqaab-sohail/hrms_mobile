@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.hrms_android_3.classes.PreferenceHelper;
 import com.example.hrms_android_3.classes.RetrofitClient;
+import com.example.hrms_android_3.login.LoginActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -73,7 +74,7 @@ public class BaseActivity extends AppCompatActivity {
         preferenceHelper.putToken("");
         preferenceHelper.putTokenType("");
         Toast.makeText(getApplicationContext(),"You have sucessfully logout",Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this,LoginActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
     }

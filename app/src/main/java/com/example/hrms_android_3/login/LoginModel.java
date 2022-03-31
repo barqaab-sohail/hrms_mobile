@@ -1,4 +1,4 @@
-package com.example.hrms_android_3.model;
+package com.example.hrms_android_3.login;
 
 public class LoginModel {
     private String name, token, token_type, email, pictureUrl;

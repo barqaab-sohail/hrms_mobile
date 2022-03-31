@@ -1,4 +1,4 @@
-package com.example.hrms_android_3;
+package com.example.hrms_android_3.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,22 +10,16 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hrms_android_3.NavActivity;
+import com.example.hrms_android_3.R;
 import com.example.hrms_android_3.classes.PreferenceHelper;
 import com.example.hrms_android_3.classes.RetrofitClient;
-import com.example.hrms_android_3.model.LoginModel;
-import com.google.android.material.navigation.NavigationView;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -91,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
             if (response.isStatus()) {
                 saveInfo(response);
-                Intent intent = new Intent(LoginActivity.this,NavActivity.class);
+                Intent intent = new Intent(LoginActivity.this, NavActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 this.finish();

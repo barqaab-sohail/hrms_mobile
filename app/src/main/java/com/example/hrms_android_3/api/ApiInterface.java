@@ -1,12 +1,12 @@
 package com.example.hrms_android_3.api;
 
-import com.example.hrms_android_3.model.LoginModel;
-import com.example.hrms_android_3.model.asset.AssetClassModel;
-import com.example.hrms_android_3.model.asset.AssetModel;
-import com.example.hrms_android_3.model.asset.AssetSubClassModel;
-import com.example.hrms_android_3.model.asset.ClientClassModel;
-import com.example.hrms_android_3.model.charts.AgeChart;
-import com.example.hrms_android_3.model.hr.Employee;
+import com.example.hrms_android_3.login.LoginModel;
+import com.example.hrms_android_3.asset.models.AssetClassModel;
+import com.example.hrms_android_3.asset.models.AssetModel;
+import com.example.hrms_android_3.asset.models.AssetSubClassModel;
+import com.example.hrms_android_3.asset.models.ClientClassModel;
+import com.example.hrms_android_3.dashboard.models.AgeChart;
+import com.example.hrms_android_3.hr.models.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +68,7 @@ public interface ApiInterface {
 
     //HR
     @GET("hr/employees")
-    Call<ArrayList<Employee>> getEmployees();
+    Call<ArrayList<Employee>> getEmployees(@Header("Authorization") String token);
 
 
 }

@@ -1,4 +1,4 @@
-package com.example.hrms_android_3.ui.asset;
+package com.example.hrms_android_3.asset;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -29,9 +29,9 @@ import com.example.hrms_android_3.R;
 import com.example.hrms_android_3.classes.PreferenceHelper;
 import com.example.hrms_android_3.classes.RetrofitClient;
 import com.example.hrms_android_3.databinding.FragmentAddAssetBinding;
-import com.example.hrms_android_3.model.asset.AssetClassModel;
-import com.example.hrms_android_3.model.asset.AssetSubClassModel;
-import com.example.hrms_android_3.model.asset.ClientClassModel;
+import com.example.hrms_android_3.asset.models.AssetClassModel;
+import com.example.hrms_android_3.asset.models.AssetSubClassModel;
+import com.example.hrms_android_3.asset.models.ClientClassModel;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.io.ByteArrayOutputStream;

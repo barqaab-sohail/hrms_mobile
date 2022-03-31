@@ -1,4 +1,4 @@
-package com.example.hrms_android_3.model.charts;
+package com.example.hrms_android_3.dashboard.models;
 
 public class AgeChart {
     String label;

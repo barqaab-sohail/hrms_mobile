@@ -1,9 +1,14 @@
-package com.example.hrms_android_3.model.asset;
+package com.example.hrms_android_3.asset.models;
 
-public class ClientClassModel {
+public class AssetClassModel {
     private String id, name;
 
-    public ClientClassModel(String id, String name) {
+    public AssetClassModel() {
+        this.id = id;
+        this.name = name;
+    }
+
+    public AssetClassModel(String id, String name) {
         this.id = id;
         this.name = name;
     }

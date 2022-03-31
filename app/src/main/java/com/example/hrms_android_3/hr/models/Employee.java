@@ -1,4 +1,4 @@
-package com.example.hrms_android_3.model.hr;
+package com.example.hrms_android_3.hr.models;
 
 public class Employee {
     private String id;
@@ -36,6 +36,20 @@ public class Employee {
                 ", cnic='" + cnic + '\'' +
                 ", designation='" + designation + '\'' +
                 ", picture='" + picture + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
+
+    public String toStringExceptPicture() {
+        return "Employee{" +
+                "id='" + id + '\'' +
+                ", employee_no='" + employee_no + '\'' +
+                ", full_name='" + full_name + '\'' +
+                ", date_of_birth='" + date_of_birth + '\'' +
+                ", date_of_joining='" + date_of_joining + '\'' +
+                ", cnic='" + cnic + '\'' +
+                ", designation='" + designation + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", status='" + status + '\'' +
                 '}';

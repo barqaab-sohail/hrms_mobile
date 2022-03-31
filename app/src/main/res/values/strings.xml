@@ -15,6 +15,6 @@
     <string name="menu_add_asset">Add Asset</string>
     <string name="menu_search_asset">Search Asset</string>
     <string name="menu_asset_result">Asset Result</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_employee_list">Employee List</string>
 
 </resources>

@@ -7,24 +7,24 @@
 
     <fragment
         android:id="@+id/nav_dashboard"
-        android:name="com.example.hrms_android_3.ui.dashboard.DashboardFragment"
+        android:name="com.example.hrms_android_3.dashboard.models.DashboardFragment"
         android:label="@string/menu_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/nav_add_asset"
-        android:name="com.example.hrms_android_3.ui.asset.AddAssetFragment"
+        android:name="com.example.hrms_android_3.asset.AddAssetFragment"
         android:label="@string/menu_add_asset"
         tools:layout="@layout/fragment_add_asset" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.hrms_android_3.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:name="com.example.hrms_android_3.hr.ui.EmployeeListFragment"
+        android:label="@string/menu_employee_list"
         tools:layout="@layout/fragment_slideshow" />
     <fragment
         android:id="@+id/nav_search_asset"
-        android:name="com.example.hrms_android_3.ui.asset.SearchAssetFragment"
+        android:name="com.example.hrms_android_3.asset.SearchAssetFragment"
         android:label="Search Asset"
         tools:layout="@layout/fragment_search_asset" />
 </navigation>

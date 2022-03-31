@@ -1,4 +1,4 @@
-package com.example.hrms_android_3.model.asset;
+package com.example.hrms_android_3.asset.models;
 
 public class AssetSubClassModel {
     private String id, name;

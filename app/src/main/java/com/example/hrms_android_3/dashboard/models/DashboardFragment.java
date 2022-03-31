@@ -1,4 +1,4 @@
-package com.example.hrms_android_3.ui.dashboard;
+package com.example.hrms_android_3.dashboard.models;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.example.hrms_android_3.classes.PreferenceHelper;
 import com.example.hrms_android_3.classes.RetrofitClient;
 import com.example.hrms_android_3.databinding.FragmentDashboardBinding;
-import com.example.hrms_android_3.model.charts.AgeChart;
+import com.example.hrms_android_3.dashboard.models.AgeChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;

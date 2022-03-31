@@ -36,13 +36,14 @@ public class NavActivity extends BaseActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarNav.toolbar);
-        binding.appBarNav.fab.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        binding.appBarNav.fab.hide();
+//        binding.appBarNav.fab.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
@@ -55,7 +56,7 @@ public class NavActivity extends BaseActivity {
 
         userEmail.setText(preferenceHelper.getEmail());
         userName.setText(preferenceHelper.getName().toUpperCase());
-      // Picasso.get().load(preferenceHelper.getPictureUrl()).resize(150, 150).into(userPicture);
+       Picasso.get().load(preferenceHelper.getPictureUrl()).resize(150, 150).into(userPicture);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
