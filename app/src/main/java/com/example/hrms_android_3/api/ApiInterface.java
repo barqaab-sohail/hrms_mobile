@@ -1,6 +1,7 @@
 package com.example.hrms_android_3.api;
 
 import com.example.hrms_android_3.asset.models.AssetEmployeeModel;
+import com.example.hrms_android_3.asset.models.AssetOfficeModel;
 import com.example.hrms_android_3.login.LoginModel;
 import com.example.hrms_android_3.asset.models.AssetClassModel;
 import com.example.hrms_android_3.asset.models.AssetModel;
@@ -45,7 +46,10 @@ public interface ApiInterface {
     Call<List<AssetClassModel>> getAssetClasses(@Header("Authorization") String token);
 
     @GET("asset/employees")
-    Call<List<AssetEmployeeModel>> getAsseEmployees(@Header("Authorization") String token);
+    Call<List<AssetEmployeeModel>> getAssetEmployees(@Header("Authorization") String token);
+
+    @GET("asset/offices")
+    Call<List<AssetOfficeModel>> getAssetOffices(@Header("Authorization") String token);
 
     @GET("asset/subClasses/{id}")
     Call<List<AssetSubClassModel>> getAssetSubClasses(@Header("Authorization") String token,
@@ -57,6 +61,8 @@ public interface ApiInterface {
                             @Field("as_sub_class_id") String as_sub_class_id,
                             @Field("description") String description,
                             @Field("client_id") String client_id,
+                            @Field("office_id") String office_id,
+                            @Field("employee_id") String employee_id,
                             @Field("En_Image") String encodedImage);
 
     @GET("asset/asset/{id}")

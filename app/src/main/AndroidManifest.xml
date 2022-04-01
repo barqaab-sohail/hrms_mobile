@@ -18,10 +18,6 @@
             android:name=".NavActivity"
             android:exported="true"
             android:theme="@style/Theme.HRMS_Android_3.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".asset.ScanCodeActivity"
@@ -34,9 +30,12 @@
             android:name=".login.LoginActivity"
             android:exported="true"
             android:label="HRMS BARQAAB">
-
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+
 
     </application>
 
