@@ -62,7 +62,7 @@ public interface ApiInterface {
                             @Field("description") String description,
                             @Field("client_id") String client_id,
                             @Field("office_id") String office_id,
-                            @Field("employee_id") String employee_id,
+                            @Field("hr_employee_id") String hr_employee_id,
                             @Field("En_Image") String encodedImage);
 
     @GET("asset/asset/{id}")

@@ -1,5 +1,6 @@
 package com.example.hrms_android_3.asset;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -24,6 +25,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.hrms_android_3.R;
 import com.example.hrms_android_3.asset.models.AssetEmployeeModel;
@@ -63,11 +66,14 @@ public class AddAssetFragment extends Fragment {
     private String assetClassId, assetSubClassId, clientId, employeeId, officeId, token;
     boolean isAllFieldsChecked = false;
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+
         binding = FragmentAddAssetBinding.inflate(inflater, container, false);
             View root = binding.getRoot();
+
             assetClassSpinner=binding.asclass;
             assetSubClassSpinner = binding.assubclass;
             assetOwnershipSpinner = binding.ownership;
@@ -83,8 +89,7 @@ public class AddAssetFragment extends Fragment {
             preferenceHelper = new PreferenceHelper(getContext());
             token = preferenceHelper.getToken();
 
-            //token = "Bearer 51|aI4y2nqFiTYgCZc6GPEx02cWw6erl3Yijnk8ELKl";
-
+            //token = "58|zbb1kSHnHtCeH89fY05kmq3DYF61zjAseM1ldyjA";
             classAndSubClassSpinnger();
             ownershipSpinner();
             officeSpinner();
@@ -107,6 +112,7 @@ public class AddAssetFragment extends Fragment {
             public void onClick(View view) {
                 isAllFieldsChecked = CheckAllFields();
                 if (isAllFieldsChecked) {
+                    progressBar.setVisibility(View.VISIBLE);
                     saveAsset();
                 }
 
@@ -126,6 +132,8 @@ public class AddAssetFragment extends Fragment {
                 if (response.isSuccessful()) {
                     progressBar.setVisibility(View.INVISIBLE);
                     List<AssetEmployeeModel>  employees = response.body();
+                    AssetEmployeeModel item = new AssetEmployeeModel("0","Please Select Employee", "");
+                    employees.add(0,item);
 
                     final ArrayAdapter employeeClassAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,employees);
                     employeeClassAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -165,6 +173,8 @@ public class AddAssetFragment extends Fragment {
                 if (response.isSuccessful()) {
                     progressBar.setVisibility(View.INVISIBLE);
                     List<AssetOfficeModel>  offices = response.body();
+                    AssetOfficeModel item = new AssetOfficeModel("0","Please Select Office");
+                        offices.add(0,item);
 
                     final ArrayAdapter officeClassAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,offices);
                     officeClassAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -207,6 +217,9 @@ public class AddAssetFragment extends Fragment {
                     progressBar.setVisibility(View.INVISIBLE);
                     List<ClientClassModel>  clients = response.body();
 
+                    ClientClassModel item = new ClientClassModel("0", "Please Select Ownership");
+                        clients.add(0,item);
+
 
                     final ArrayAdapter clientClassAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,clients);
                     clientClassAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -246,6 +259,9 @@ public class AddAssetFragment extends Fragment {
                 if (response.isSuccessful()) {
 
                     List<AssetClassModel>  assetClass = response.body();
+
+                    AssetClassModel item = new AssetClassModel("0","Please Select Asset class");
+                    assetClass.add(0,item);
 
 
                     final ArrayAdapter assetClassAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,assetClass);
@@ -287,8 +303,9 @@ public class AddAssetFragment extends Fragment {
 
                 if(response.isSuccessful()) {
                     List<AssetSubClassModel>  assetSubClass = response.body();
+                    AssetSubClassModel item = new AssetSubClassModel("0", "Please Select Asset Sub Class");
+                    assetSubClass.add(0,item);
 
-                    
 
                     final ArrayAdapter assetSubClassAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, assetSubClass);
                     assetSubClassAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -348,11 +365,16 @@ public class AddAssetFragment extends Fragment {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 String data = response.body();
-                Toast.makeText(getContext(), data, Toast.LENGTH_SHORT).show();
+               Toast.makeText(getContext(), data, Toast.LENGTH_SHORT).show();
                 etdescription.setText("");
                 imageView.setImageURI(null);
                 etdescription.setError(null);
-
+                officeSpinner.setSelection(0);
+                assetOwnershipSpinner.setSelection(0);
+                assetClassSpinner.setSelection(0);
+                assetSubClassSpinner.setSelection(0);
+                employeeSpinner.setSelection(0);
+                progressBar.setVisibility(View.INVISIBLE);
 
             }
 
@@ -360,6 +382,7 @@ public class AddAssetFragment extends Fragment {
             public void onFailure(Call<String> call, Throwable t) {
                 String data = t.toString();
                 Toast.makeText(getContext(), data, Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -377,7 +400,7 @@ public class AddAssetFragment extends Fragment {
     private boolean CheckAllFields() {
 
 
-        if (assetSubClassId == null){
+        if (assetSubClassId == null || assetSubClassId == "0"){
             Toast.makeText(getContext(),"Asset Sub Class is Required",Toast.LENGTH_LONG).show();
             return false;
         }
@@ -385,7 +408,7 @@ public class AddAssetFragment extends Fragment {
             etdescription.setError("Description is Required");
             return false;
         }
-        if (clientId == null){
+        if (clientId == null || clientId =="0"){
             Toast.makeText(getContext(),"Ownership is Required",Toast.LENGTH_LONG).show();
             return false;
         }
@@ -393,6 +416,16 @@ public class AddAssetFragment extends Fragment {
             Toast.makeText(getContext(), "Office Or Employee is Required", Toast.LENGTH_LONG).show();
             return false;
         }
+        if (officeId != null && employeeId != null && employeeId!="0" && officeId!="0") {
+            Toast.makeText(getContext(), "Only One Required Office Or Employee", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        if (officeId == "0" && employeeId=="0") {
+            Toast.makeText(getContext(), "Office Or Employee is Required", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
 
         if(imageView.getDrawable()==null){
             Toast.makeText(getContext(),"Asset Image is Required",Toast.LENGTH_LONG).show();

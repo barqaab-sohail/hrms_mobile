@@ -11,7 +11,8 @@ public class AssetEmployeeModel {
 
     @Override
     public String toString() {
-        return full_name +", "+designation;
+
+        return full_name +"   "+designation;
     }
 
     public String getId() {

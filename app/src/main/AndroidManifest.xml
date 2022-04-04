@@ -16,7 +16,7 @@
 
         <activity
             android:name=".NavActivity"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Theme.HRMS_Android_3.NoActionBar">
         </activity>
         <activity
@@ -35,7 +35,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
     </application>
 
