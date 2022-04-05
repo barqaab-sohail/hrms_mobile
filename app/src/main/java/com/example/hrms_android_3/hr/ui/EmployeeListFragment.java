@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -19,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.hrms_android_3.R;
 import com.example.hrms_android_3.classes.PreferenceHelper;
 import com.example.hrms_android_3.classes.RetrofitClient;
-import com.example.hrms_android_3.databinding.FragmentSlideshowBinding;
+import com.example.hrms_android_3.databinding.FragmentEmployeeListBinding;
 import com.example.hrms_android_3.hr.adpter.employeesAdapter;
 import com.example.hrms_android_3.hr.models.Employee;
 
@@ -31,8 +32,9 @@ import retrofit2.Response;
 
 public class EmployeeListFragment extends Fragment {
 
-    private FragmentSlideshowBinding binding;
+    private FragmentEmployeeListBinding binding;
     private PreferenceHelper preferenceHelper;
+    private ProgressBar progressBar;
 
     RecyclerView rcv;
     public employeesAdapter adapter;
@@ -70,9 +72,9 @@ public class EmployeeListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentEmployeeListBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+        progressBar = (ProgressBar)binding.progressBar;
         rcv = (RecyclerView)binding.recViewEmployees;
         rcv.setLayoutManager(new LinearLayoutManager(getContext()));
         preferenceHelper = new PreferenceHelper(getContext());
@@ -85,6 +87,7 @@ public class EmployeeListFragment extends Fragment {
                 holder.addAll(response.body());
                 adapter = new employeesAdapter(holder, getContext());
                 rcv.setAdapter(adapter);
+                progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override

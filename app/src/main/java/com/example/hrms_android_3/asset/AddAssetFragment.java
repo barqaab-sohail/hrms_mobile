@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -364,17 +365,22 @@ public class AddAssetFragment extends Fragment {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                String data = response.body();
-               Toast.makeText(getContext(), data, Toast.LENGTH_SHORT).show();
-                etdescription.setText("");
-                imageView.setImageURI(null);
-                etdescription.setError(null);
-                officeSpinner.setSelection(0);
-                assetOwnershipSpinner.setSelection(0);
-                assetClassSpinner.setSelection(0);
-                assetSubClassSpinner.setSelection(0);
-                employeeSpinner.setSelection(0);
-                progressBar.setVisibility(View.INVISIBLE);
+                if(response.isSuccessful()) {
+                    String data = response.body();
+                    Toast.makeText(getContext(), data, Toast.LENGTH_SHORT).show();
+                    etdescription.setText("");
+                    imageView.setImageURI(null);
+                    etdescription.setError(null);
+                    officeSpinner.setSelection(0);
+                    assetOwnershipSpinner.setSelection(0);
+                    assetClassSpinner.setSelection(0);
+                    assetSubClassSpinner.setSelection(0);
+                    employeeSpinner.setSelection(0);
+                    progressBar.setVisibility(View.INVISIBLE);
+                }else{
+                    Log.d("LOG","RESPONSE ==="+response.raw().toString());
+                    Toast.makeText(getContext(),"Aseet is not saved",Toast.LENGTH_LONG).show();
+                }
 
             }
 

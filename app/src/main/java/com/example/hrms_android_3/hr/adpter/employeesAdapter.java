@@ -1,6 +1,7 @@
 package com.example.hrms_android_3.hr.adpter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Filterable;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.hrms_android_3.EmployeeDocumentsActivity;
 import com.example.hrms_android_3.R;
 import com.example.hrms_android_3.hr.holder.employeesViewHolder;
 import com.example.hrms_android_3.hr.models.Employee;
@@ -43,6 +45,7 @@ public class employeesAdapter extends RecyclerView.Adapter<employeesViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull employeesViewHolder holder, int position) {
+        final Employee temp = data.get(position);
         Picasso.get().load(data.get(position).getPicture())
                 .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                 .networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE)
@@ -55,6 +58,17 @@ public class employeesAdapter extends RecyclerView.Adapter<employeesViewHolder> 
         holder.empBirthDate.setText("Date of Birth: "+ data.get(position).getDate_of_birth());
         holder.empMobile.setText("Mobile: "+ data.get(position).getMobile());
         holder.empStatus.setText("Status: "+ data.get(position).getStatus());
+
+        holder.empPicture.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(context, EmployeeDocumentsActivity.class);
+                intent.putExtra("name", temp.getFull_name());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     @Override

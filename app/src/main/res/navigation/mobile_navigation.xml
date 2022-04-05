@@ -21,7 +21,7 @@
         android:id="@+id/nav_slideshow"
         android:name="com.example.hrms_android_3.hr.ui.EmployeeListFragment"
         android:label="@string/menu_employee_list"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_employee_list" />
     <fragment
         android:id="@+id/nav_search_asset"
         android:name="com.example.hrms_android_3.asset.SearchAssetFragment"
