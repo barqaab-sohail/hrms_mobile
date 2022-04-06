@@ -18,7 +18,7 @@
         tools:layout="@layout/fragment_add_asset" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_employee_list"
         android:name="com.example.hrms_android_3.hr.ui.EmployeeListFragment"
         android:label="@string/menu_employee_list"
         tools:layout="@layout/fragment_employee_list" />

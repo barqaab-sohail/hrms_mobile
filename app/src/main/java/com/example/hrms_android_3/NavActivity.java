@@ -1,15 +1,12 @@
 package com.example.hrms_android_3;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hrms_android_3.classes.PreferenceHelper;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -27,6 +24,7 @@ public class NavActivity extends BaseActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityNavBinding binding;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +46,7 @@ public class NavActivity extends BaseActivity {
         NavigationView navigationView = binding.navView;
 
 
+
         View header = navigationView.getHeaderView(0);
         PreferenceHelper preferenceHelper = new PreferenceHelper(this);
         TextView userEmail = header.findViewById(R.id.userEmail);
@@ -61,12 +60,19 @@ public class NavActivity extends BaseActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new Builder(
-                R.id.nav_dashboard, R.id.nav_add_asset, R.id.nav_search_asset, R.id.nav_slideshow)
+                R.id.nav_dashboard, R.id.nav_add_asset, R.id.nav_search_asset, R.id.nav_employee_list)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_nav);
+
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        Menu nav_Menu = navigationView.getMenu();
+
+        
+        hideMenuEmployeeList(nav_Menu);
+
     }
 
 
@@ -76,6 +82,10 @@ public class NavActivity extends BaseActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_nav);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    private void hideMenuEmployeeList(Menu menu){
+        menu.findItem(R.id.nav_employee_list).setVisible(false);
     }
 
 
