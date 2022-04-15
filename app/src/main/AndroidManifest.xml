@@ -15,12 +15,15 @@
         android:theme="@style/Theme.HRMS_Android_3"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".EmployeeDocumentListActivity"
+            android:exported="false" />
+        <activity
             android:name=".EmployeeDocumentsActivity"
             android:exported="false" />
         <activity
             android:name=".NavActivity"
             android:exported="false"
-            android:theme="@style/Theme.HRMS_Android_3.NoActionBar"></activity>
+            android:theme="@style/Theme.HRMS_Android_3.NoActionBar" />
         <activity
             android:name=".asset.ScanCodeActivity"
             android:exported="false" />
