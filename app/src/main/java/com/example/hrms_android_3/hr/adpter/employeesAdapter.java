@@ -11,6 +11,7 @@ import android.widget.Filterable;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.hrms_android_3.EmployeeDocumentListActivity;
 import com.example.hrms_android_3.EmployeeDocumentsActivity;
 import com.example.hrms_android_3.R;
 import com.example.hrms_android_3.hr.holder.employeesViewHolder;
@@ -62,8 +63,9 @@ public class employeesAdapter extends RecyclerView.Adapter<employeesViewHolder> 
         holder.empPicture.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(context, EmployeeDocumentsActivity.class);
+                Intent intent = new Intent(context, EmployeeDocumentListActivity.class);
                 intent.putExtra("name", temp.getFull_name());
+                intent.putExtra("id", temp.getId());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 
@@ -111,36 +113,5 @@ public class employeesAdapter extends RecyclerView.Adapter<employeesViewHolder> 
         }
     };
 
-//    Filter filter=new Filter() {
-//        @Override
-//        // background thread
-//        protected FilterResults performFiltering(CharSequence keyword)
-//        {
-//            ArrayList<Employee> filtereddata=new ArrayList<>();
-//
-//            if(keyword.toString().isEmpty())
-//                filtereddata.addAll(backup);
-//            else
-//            {
-//                for(Employee obj : backup)
-//                {
-//                    if(obj.getFull_name().toString().toLowerCase().contains(keyword.toString().toLowerCase()))
-//                        filtereddata.add(obj);
-//                }
-//            }
-//
-//            FilterResults results=new FilterResults();
-//            results.values=filtereddata;
-//            return results;
-//        }
-//
-//        @Override  // main UI thread
-//        protected void publishResults(CharSequence constraint, FilterResults results)
-//        {
-//            data.clear();
-//            data.addAll((ArrayList<Model>)results.values);
-//            notifyDataSetChanged();
-//        }
-//    };
 
 }

@@ -2,6 +2,7 @@ package com.example.hrms_android_3.api;
 
 import com.example.hrms_android_3.asset.models.AssetEmployeeModel;
 import com.example.hrms_android_3.asset.models.AssetOfficeModel;
+import com.example.hrms_android_3.hr.models.EmployeeDocument;
 import com.example.hrms_android_3.login.LoginModel;
 import com.example.hrms_android_3.asset.models.AssetClassModel;
 import com.example.hrms_android_3.asset.models.AssetModel;
@@ -79,6 +80,11 @@ public interface ApiInterface {
     //HR
     @GET("hr/employees")
     Call<ArrayList<Employee>> getEmployees(@Header("Authorization") String token);
+
+    //Employee Documents List
+    @GET("hr/employee/documents/{id}")
+    Call<ArrayList<EmployeeDocument>> getEmployeeDocuments(@Header("Authorization") String token,
+                                                           @Path("id") String id);
 
 
 }

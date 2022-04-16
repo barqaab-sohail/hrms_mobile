@@ -2,21 +2,24 @@ package com.example.hrms_android_3.hr.models;
 
 public class EmployeeDocument {
     private String id;
-    private String docType;
+    private String extension;
     private  String description;
+    private String url;
 
-    public EmployeeDocument(String id, String docType, String description) {
+    public EmployeeDocument(String id, String extension, String description, String url) {
         this.id = id;
-        this.docType = docType;
+        this.extension = extension;
         this.description = description;
+        this.url = url;
     }
 
     @Override
     public String toString() {
-        return "EmployeeDocuments{" +
+        return "EmployeeDocument{" +
                 "id='" + id + '\'' +
-                ", docType='" + docType + '\'' +
+                ", extension='" + extension + '\'' +
                 ", description='" + description + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 
@@ -28,12 +31,12 @@ public class EmployeeDocument {
         this.id = id;
     }
 
-    public String getDocType() {
-        return docType;
+    public String getExtension() {
+        return extension;
     }
 
-    public void setDocType(String docType) {
-        this.docType = docType;
+    public void setExtension(String extension) {
+        this.extension = extension;
     }
 
     public String getDescription() {
@@ -42,5 +45,13 @@ public class EmployeeDocument {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

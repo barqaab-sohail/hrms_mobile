@@ -45,11 +45,11 @@ public class employeeDocumentsListAdapter extends RecyclerView.Adapter<employeeD
     @Override
     public void onBindViewHolder(@NonNull employeeDocumentsViewHolder holder, int position) {
             holder.docDescription.setText(data.get(position).getDescription());
-            if(data.get(position).getDocType()=="pdf"){
-
-            }else{
-
-            }
+//            if(data.get(position).getExtension()=="pdf"){
+//
+//            }else{
+//
+//            }
     }
 
 
