@@ -68,7 +68,6 @@ public class NavActivity extends BaseActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
         //hide nav_menu item
         Menu nav_Menu = navigationView.getMenu();
         //hideMenuEmployeeList(nav_Menu);

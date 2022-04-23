@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hrms_android_3.EmployeeDocumentListActivity;
-import com.example.hrms_android_3.EmployeeDocumentsActivity;
 import com.example.hrms_android_3.R;
 import com.example.hrms_android_3.hr.holder.employeesViewHolder;
 import com.example.hrms_android_3.hr.models.Employee;
@@ -64,11 +63,11 @@ public class employeesAdapter extends RecyclerView.Adapter<employeesViewHolder> 
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(context, EmployeeDocumentListActivity.class);
-                intent.putExtra("name", temp.getFull_name());
-                intent.putExtra("id", temp.getId());
+                intent.putExtra("id",temp.getId());
+                intent.putExtra("name",temp.getFull_name());
+                intent.putExtra("designation",temp.getDesignation());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
-
             }
         });
     }

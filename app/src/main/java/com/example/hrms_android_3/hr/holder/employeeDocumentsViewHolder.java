@@ -15,7 +15,7 @@ public class employeeDocumentsViewHolder extends RecyclerView.ViewHolder {
 
     public employeeDocumentsViewHolder(@NonNull View itemView) {
         super(itemView);
-        docType = (ImageView)itemView.findViewById(R.id.doc_extension);
-        docDescription = (TextView) itemView.findViewById(R.id.emp_doc_description);
+        docType = (ImageView) itemView.findViewById(R.id.doc_extension);
+        docDescription = (TextView) itemView.findViewById(R.id.testing123);
     }
 }

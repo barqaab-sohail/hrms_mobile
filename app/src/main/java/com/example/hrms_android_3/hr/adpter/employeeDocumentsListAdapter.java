@@ -1,14 +1,19 @@
 package com.example.hrms_android_3.hr.adpter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filterable;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.hrms_android_3.EmployeeDocumentListActivity;
+import com.example.hrms_android_3.PdfViewActivity;
 import com.example.hrms_android_3.R;
 import com.example.hrms_android_3.hr.holder.employeeDocumentsViewHolder;
 import com.example.hrms_android_3.hr.holder.employeesViewHolder;
@@ -38,18 +43,34 @@ public class employeeDocumentsListAdapter extends RecyclerView.Adapter<employeeD
     @Override
     public employeeDocumentsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.employees_card, parent,false);
+        View view = inflater.inflate(R.layout.employee_document_card, parent,false);
         return new employeeDocumentsViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull employeeDocumentsViewHolder holder, int position) {
+
             holder.docDescription.setText(data.get(position).getDescription());
-//            if(data.get(position).getExtension()=="pdf"){
-//
-//            }else{
-//
-//            }
+            if(data.get(position).getExtension().equals("jpg")){
+               holder.docType.setImageResource(R.drawable.jpg);
+            }else{
+                holder.docType.setImageResource(R.drawable.pdf);
+            }
+
+        holder.docType.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if(data.get(position).getExtension().equals("pdf")) {
+                    Intent intent = new Intent(context, PdfViewActivity.class);
+                    intent.putExtra("url", data.get(position).getUrl());
+                    intent.putExtra("Document Name", data.get(position).getDescription());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            }
+        });
+
+
     }
 
 

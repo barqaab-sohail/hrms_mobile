@@ -33,13 +33,15 @@ public class EmployeeDocumentListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.employee_document_list);
+        setTitle(getIntent().getStringExtra("name")+", " +getIntent().getStringExtra("designation"));
 
         progressBar = (ProgressBar)findViewById(R.id.progress_bar_doc);
         rcv = (RecyclerView)findViewById(R.id.rec_view_employee_documents);
         rcv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         preferenceHelper = new PreferenceHelper(getApplicationContext());
         String token = preferenceHelper.getToken();
-        Call<ArrayList<EmployeeDocument>> call = RetrofitClient.getInstance().getApi().getEmployeeDocuments(token, "3");
+        String employeeId = getIntent().getStringExtra("id");
+        Call<ArrayList<EmployeeDocument>> call = RetrofitClient.getInstance().getApi().getEmployeeDocuments(token, employeeId);
         call.enqueue(new Callback<ArrayList<EmployeeDocument>>() {
             @Override
             public void onResponse(Call<ArrayList<EmployeeDocument>> call, Response<ArrayList<EmployeeDocument>> response) {
@@ -47,8 +49,8 @@ public class EmployeeDocumentListActivity extends AppCompatActivity {
                 holder =new ArrayList<>();
                 holder.addAll(response.body());
                 adapter = new employeeDocumentsListAdapter(holder, getApplicationContext());
-                Toast.makeText(getApplicationContext(), holder.toString(), Toast.LENGTH_SHORT).show();
-               // rcv.setAdapter(adapter);
+                //Toast.makeText(getApplicationContext(), holder.toString(), Toast.LENGTH_SHORT).show();
+                rcv.setAdapter(adapter);
             }
 
             @Override
