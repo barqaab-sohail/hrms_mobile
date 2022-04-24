@@ -13,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hrms_android_3.EmployeeDocumentListActivity;
+import com.example.hrms_android_3.ImageViewActivity;
 import com.example.hrms_android_3.PdfViewActivity;
+import com.example.hrms_android_3.PdfWebviewActivity;
 import com.example.hrms_android_3.R;
 import com.example.hrms_android_3.hr.holder.employeeDocumentsViewHolder;
 import com.example.hrms_android_3.hr.holder.employeesViewHolder;
@@ -61,9 +63,16 @@ public class employeeDocumentsListAdapter extends RecyclerView.Adapter<employeeD
             @Override
             public void onClick(View v){
                 if(data.get(position).getExtension().equals("pdf")) {
-                    Intent intent = new Intent(context, PdfViewActivity.class);
+                    Intent intent = new Intent(context, PdfWebviewActivity.class);
                     intent.putExtra("url", data.get(position).getUrl());
-                    intent.putExtra("Document Name", data.get(position).getDescription());
+                    intent.putExtra("Title", data.get(position).getDescription());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+                if(data.get(position).getExtension().equals("jpg")) {
+                    Intent intent = new Intent(context, ImageViewActivity.class);
+                    intent.putExtra("url", data.get(position).getUrl());
+                    intent.putExtra("Title", data.get(position).getDescription());
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }

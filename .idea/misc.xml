@@ -4,9 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/hrms_mobile/app/src/main/res/layout/fragment_dashboard.xml" value="0.12092391304347826" />
+        <entry key="..\:/hrms_mobile/app/src/main/res/layouts/asset/layout/activity_image_view.xml" value="0.14221014492753623" />
+        <entry key="..\:/hrms_mobile/app/src/main/res/layouts/asset/layout/activity_pdf_view.xml" value="0.14221014492753623" />
+        <entry key="..\:/hrms_mobile/app/src/main/res/layouts/asset/layout/activity_pdf_webview.xml" value="0.1" />
         <entry key="..\:/hrms_mobile/app/src/main/res/layouts/asset/layout/fragment_add_asset.xml" value="0.1" />
         <entry key="..\:/hrms_mobile/app/src/main/res/layouts/asset/layout/fragment_search_asset.xml" value="0.1" />
         <entry key="..\:/hrms_mobile/app/src/main/res/layouts/asset/layout/layout.xml" value="0.1" />
+        <entry key="..\:/hrms_mobile/app/src/main/res/layouts/asset/menu/share_img.xml" value="0.20416666666666666" />
+        <entry key="..\:/hrms_mobile/app/src/main/res/layouts/asset/xml/paths.xml" value="0.1" />
         <entry key="..\:/hrms_mobile/app/src/main/res/menu/menu.xml" value="0.1" />
         <entry key="..\:/sohail/HRMS_Android_3/app/src/main/res/layout/activity_fragment_asset_result.xml" value="0.35733695652173914" />
         <entry key="..\:/sohail/HRMS_Android_3/app/src/main/res/layout/activity_login.xml" value="0.2957427536231884" />

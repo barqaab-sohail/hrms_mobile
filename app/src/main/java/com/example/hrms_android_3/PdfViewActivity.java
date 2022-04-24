@@ -19,7 +19,6 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class PdfViewActivity extends AppCompatActivity {
 
-    PDFView pdfView;
     String pdfurl;
             //"http://192.168.1.10/hrms/public/storage/hr/documentation/3-sohail_afzal/3-HR Form-1588017649.pdf";
 
@@ -27,9 +26,9 @@ public class PdfViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf_view);
-        setTitle(getIntent().getStringExtra("Document Name"));
+        setTitle(getIntent().getStringExtra("Title"));
         pdfurl = getIntent().getStringExtra("url");
-        pdfView = findViewById(R.id.idPDFView);
+
         
         new RetrivePDFfromUrl().execute(pdfurl);
     }
@@ -45,7 +44,7 @@ public class PdfViewActivity extends AppCompatActivity {
                 URL url = new URL(strings[0]);
                 // below is the step where we are
                 // creating our connection.
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                HttpURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
                if (urlConnection.getResponseCode() == 200) {
                     // response is success.
                     // we are getting input stream from url
@@ -66,6 +65,7 @@ public class PdfViewActivity extends AppCompatActivity {
         protected void onPostExecute(InputStream inputStream) {
             // after the execution of our async
             // task we are loading our pdf in our pdf view.
+            PDFView pdfView = (PDFView) findViewById(R.id.idPDFView);
             pdfView.fromStream(inputStream).load();
         }
     }
