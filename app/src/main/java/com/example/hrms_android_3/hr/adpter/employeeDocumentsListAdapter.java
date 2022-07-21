@@ -63,7 +63,7 @@ public class employeeDocumentsListAdapter extends RecyclerView.Adapter<employeeD
             @Override
             public void onClick(View v){
                 if(data.get(position).getExtension().equals("pdf")) {
-                    Intent intent = new Intent(context, PdfWebviewActivity.class);
+                    Intent intent = new Intent(context, PdfViewActivity.class);
                     intent.putExtra("url", data.get(position).getUrl());
                     intent.putExtra("Title", data.get(position).getDescription());
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

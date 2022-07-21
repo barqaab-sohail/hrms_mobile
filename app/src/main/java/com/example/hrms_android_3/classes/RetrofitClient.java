@@ -15,8 +15,11 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RetrofitClient {
 
-    private static final String BASE_URL = "https://www.barqaab.pk/hrms/public/api/";
-            //"http://192.168.1.10/hrms/public/api/";
+    private static final String BASE_URL = "http://192.168.1.10/hrms/public/api/";
+            //"https://www.barqaab.pk/hrms/public/api/";
+
+
+
     private static RetrofitClient retrofitClient;
     private Retrofit retrofit;
 
@@ -32,9 +35,12 @@ public class RetrofitClient {
                 .addInterceptor(logging)
                 .build();
 
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
         retrofit = new Retrofit.Builder().client(okHttpClient).baseUrl(BASE_URL).
-                addConverterFactory(GsonConverterFactory.create()).
+                addConverterFactory(GsonConverterFactory.create(gson)).
                 build();
     }
 

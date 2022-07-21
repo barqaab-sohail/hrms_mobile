@@ -53,16 +53,6 @@ public class ImageViewActivity extends AppCompatActivity {
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
                 Bitmap bitmap = bitmapDrawable.getBitmap();
                 shareImageandText(bitmap);
-
-//                BitmapDrawable bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
-//                Bitmap bitmap = bitmapDrawable.getBitmap();
-//                String bitmapPath = MediaStore.Images.Media.insertImage(getContentResolver(),bitmap,"title",null);
-//                //Uri uri = Uri.parse(bitmapPath);
-//                Intent intent = new Intent(Intent.ACTION_SEND);
-//               intent.setType("text/plain");
-//               // intent.putExtra(Intent.EXTRA_STREAM, uri);
-//                intent.putExtra(Intent.EXTRA_TEXT, title);
-//                startActivity(Intent.createChooser(intent, "Share"));
                 break;
         }
         return super.onOptionsItemSelected(item);

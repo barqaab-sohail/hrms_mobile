@@ -41,21 +41,21 @@ public class EmployeeDocumentListActivity extends AppCompatActivity {
         preferenceHelper = new PreferenceHelper(getApplicationContext());
         String token = preferenceHelper.getToken();
         String employeeId = getIntent().getStringExtra("id");
-        Call<ArrayList<EmployeeDocument>> call = RetrofitClient.getInstance().getApi().getEmployeeDocuments(token, employeeId);
+        Call<ArrayList<EmployeeDocument>> call = RetrofitClient.getInstance().getApi().getEmployeeDocuments("Bearer "+token, employeeId);
+
         call.enqueue(new Callback<ArrayList<EmployeeDocument>>() {
             @Override
             public void onResponse(Call<ArrayList<EmployeeDocument>> call, Response<ArrayList<EmployeeDocument>> response) {
-
                 holder =new ArrayList<>();
                 holder.addAll(response.body());
                 adapter = new employeeDocumentsListAdapter(holder, getApplicationContext());
-                //Toast.makeText(getApplicationContext(), holder.toString(), Toast.LENGTH_SHORT).show();
                 rcv.setAdapter(adapter);
             }
 
             @Override
             public void onFailure(Call<ArrayList<EmployeeDocument>> call, Throwable t) {
 
+                Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_LONG).show();
             }
         });
 
